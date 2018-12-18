@@ -11,13 +11,13 @@ class Ideas {
   }
 
   deleteFromStorage() {
-
+    localStorage.removeItem(this.id);
   }
 
   updateContent() {
 
   }
-  
+
   updateQuality() {
 
   }
