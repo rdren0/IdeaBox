@@ -5,15 +5,19 @@ class Ideas {
     this.body = body;
     this.quality = quality || 'Swill';
   }
-  saveToStorage() {
 
+  saveToStorage() {
+    localStorage.setItem(this.id, JSON.stringify(this));
   }
+
   deleteFromStorage() {
 
   }
+
   updateContent() {
 
   }
+  
   updateQuality() {
 
   }
