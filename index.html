@@ -1,48 +1,54 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
  <title> This will show as the tab info in browser </title>
  <link href="style.css" type="text/css" rel="stylesheet">
  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet">
-  </head>
-  <body>
+</head>
+<body>
   <section class="container">
-      <article class="box1">
-        <article class="title-box1">
-          <h1 class="idea-title">ideabox</h1>
-          <h1> triples</h1>
-        </article>
-        <article class="title-box2">
-          <input type="text" class="search-box"><button class="search-button"><img src="images/search.svg" class="search-button-image"></button>
-        </article>
+    <article class="box1">
+      <article class="title-box1">
+        <h1 class="idea-title">ideabox</h1>
+        <h1> triples</h1>
       </article>
+      <article class="title-box2">
+        <input type="text" class="search-input"><button class="search-button"><img src="images/search.svg" class="search-button-image"></button>
+      </article>
+    </article>
     <article class="box2">
-    <section class="box2-container">
-      <article class="input-fields"></article>
-      <article class="input-fields"><h3>Title</h3>
-        <input type="text" class="title-input-box">
-        <h3>Body</h3>
-        <input type="text" class="body-box">
-        <button class="save-button">SAVE</button></article>
-      <article class="input-fields"></article>
-    </section>
+      <section class="box2-container">
+        <article class="input-fields"></article>
+        <form class="input-fields">
+          <label for="title">Title</label>
+          <input type="text" class="title-input-box" id="title">
+          <label for="body">Body</label>
+          <input type="text" class="body-box" id="body">
+          <button class="save-button">SAVE</button>
+        </form>
+        <article class="input-fields"></article>
+      </section>
     </article>
     <article class="box3">
-    <article class="idea-cards">
-      <h2> Lorim Blah Blah</h2>
-        <p>ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat.</p>
-    <hr>
-      <button class="card-buttons"> <img src="images/down.svg"> </button>
-      <button class="card-buttons"> <img src="images/up.svg"></button>
-      <h4> Quality Swill</h4>
-      <button class="card-buttons close-button"><img src="images/close.svg"></button>
+      <article class="idea-cards">
+        <h2 class="card-title"> Lorim Blah Blah</h2>
+        <p class="card-body">
+          ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.
+        </p>
+        <hr>
+       <img class="card-buttons down-button"src="images/down.svg">
+        <img class="card-buttons up-button"src="images/up.svg">
+        <h4 class="card-quality"> Quality Swill</h4>
+        <img class="card-buttons close-button"src="images/close.svg">
+      </article>
     </article>
-   </article>
   </section>
-  </body>
+</body>
+<script src='idea.js'></script>
+<script src='main.js'></script>
 </html>
 
 
