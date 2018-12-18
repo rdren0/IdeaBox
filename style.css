@@ -101,7 +101,7 @@ img{
   border-radius: 50%;
   display: inline;
   height: 15px;
-  visibility: hidden;
+  /*visibility: hidden;*/
   width: 15px;
 }
 
