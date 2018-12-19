@@ -9,7 +9,7 @@ body{
 
 .container {
   display: grid;
-  grid-template-rows: 50px 225px 1fr;
+  grid-template-rows: 50px 225px 50px 1fr;
 }
 
 .box1{
@@ -26,6 +26,26 @@ body{
   background-color: #EAEAEA;
   padding-top: 10px;
  
+}
+
+.box2b{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: #524649;
+  color: #FFFFFF;
+  padding-left: 15px;
+  width: 100%;
+}
+
+.box2b button{
+  padding: auto;
+  margin-top: 10px;
+  justify-content: center;
+  border-radius: 12px;
+  height: 30px;
+  background-color: #6E646B;
+  color: #FFFFFF;
+  width: 150px;
 }
 
 .box2-container{
