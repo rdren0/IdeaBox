@@ -9,10 +9,51 @@ var closeButton     =     document.querySelector('.close-button');
 var cardQuality     =     document.querySelector('.card-quality');
 var cardArea        =     document.querySelector('.box3');
 var ideasArray      =     [];
+var resultsArray    =     [];
 
-
+//Event Listeners
 saveButton.addEventListener('click', createCard);
 // cardArea.addEventListener('click', deleteCard);
+searchInput.addEventListener('keyup', searchIdeas);
+// upButton.addEventListener('click', upQuality);
+// downButton.addEventListener('click', downQuality);
+
+
+//Functions to work on****************
+function searchIdeas (event) {
+  //****search functionality ideas
+  // const results = searchInput.value.toUpperCase();     
+  // for (var i = 0; i < ideasArray.length; i++) {
+  //   if (ideasArray[i].cardTitle === searchInput.value) {
+  //     resultsArray.push(ideasArray[i]);
+  //     console.log(resultsArray[i]);
+  //*****************
+    event.preventDefault();
+    var searchWord = searchInput.value.toUpperCase();
+    var filteredIdeas = ideasArray.filter(function(obj) {
+      var titleText = obj.title.toUpperCase();
+      var bodyText = obj.body.toUpperCase();
+      return titleText.includes(searchWord) || bodyText.includes(searchWord);
+    });
+    cardArea.innerHTML = "";
+    filteredIdeas.forEach(function(obj) {
+      appendCard(obj)
+    })
+    }
+  
+
+
+// function upQuality() {
+//   if (cardQuality.innerText === 'Quality: Swill') {
+//     cardQuality.innerText = 'Quality: Plausible';
+//   } else if (car)
+// }
+
+// function downQuality() {
+
+// }
+
+//*************************************
 
 
 window.onload = function() {
