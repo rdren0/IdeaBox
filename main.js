@@ -9,12 +9,21 @@ var closeButton     =     document.querySelector('.close-button');
 var cardQuality     =     document.querySelector('.card-quality');
 var cardArea        =     document.querySelector('.box3');
 var ideasArray      =     [];
-var resultsArray    =     [];
+// var resultsArray    =     [];
+var swillButton     =     document.querySelector('.swill-quality');
+var plausibleButton =     document.querySelector('.plausible-quality');
+var geniusButton    =     document.querySelector('.genius-quality');
+var qualityCounter  =     0;
+
+
 
 //Event Listeners
 saveButton.addEventListener('click', createCard);
 // cardArea.addEventListener('click', deleteCard);
 searchInput.addEventListener('keyup', searchIdeas);
+swillButton.addEventListener('click', searchSwill);
+plausibleButton.addEventListener('click', searchPlausible);
+geniusButton.addEventListener('click', searchGenius);
 // upButton.addEventListener('click', upQuality);
 // downButton.addEventListener('click', downQuality);
 
@@ -40,6 +49,8 @@ function searchIdeas (event) {
       appendCard(obj)
     })
     }
+
+
   
 
 
@@ -86,7 +97,7 @@ function appendCard (idea) {
     <hr>
     <img class="card-buttons down-button"src="images/down.svg">
     <img class="card-buttons up-button"src="images/up.svg">
-    <h4 class="card-quality"> Quality: Swill</h4>
+    <h4 class="card-quality"> Quality: <span class="quality-level">Swill</span></h4>
     <button onclick="deleteCard(${idea.id})" class="close-button"></button><img class="card-buttons close-button"src="images/close.svg">
   </article>`
   cardArea.innerHTML = card + cardArea.innerHTML;
