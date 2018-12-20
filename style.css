@@ -47,6 +47,14 @@ body{
   width: 150px;
 }
 
+.body-box{
+  resize: none;
+  border: none;
+}
+.title-input-box{
+  border: none;
+}
+
 .box2-container{
   display: grid;
   grid-template-columns: 1fr 700px 1fr;

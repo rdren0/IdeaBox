@@ -9,11 +9,11 @@ var closeButton     =     document.querySelector('.close-button');
 var cardQuality     =     document.querySelector('.card-quality');
 var cardArea        =     document.querySelector('.box3');
 var ideasArray      =     [];
+var qualityArray    =     ['Swill', 'Plausible', 'Genius'];
 // var resultsArray    =     [];
 var swillButton     =     document.querySelector('.swill-quality');
 var plausibleButton =     document.querySelector('.plausible-quality');
 var geniusButton    =     document.querySelector('.genius-quality');
-var qualityCounter  =     0;
 
 
 
@@ -21,13 +21,17 @@ var qualityCounter  =     0;
 saveButton.addEventListener('click', createCard);
 // cardArea.addEventListener('click', deleteCard);
 searchInput.addEventListener('keyup', searchIdeas);
-swillButton.addEventListener('click', searchSwill);
-plausibleButton.addEventListener('click', searchPlausible);
-geniusButton.addEventListener('click', searchGenius);
+// swillButton.addEventListener('click', searchSwill);
+// plausibleButton.addEventListener('click', searchPlausible);
+// geniusButton.addEventListener('click', searchGenius);
 // upButton.addEventListener('click', upQuality);
 // downButton.addEventListener('click', downQuality);
+// cardBody.addEventListener('dblclick', makeEditable)
 
+// function makeEditable(e){
+//   e.preventDefault;
 
+// }
 //Functions to work on****************
 function searchIdeas (event) {
   //****search functionality ideas
@@ -90,8 +94,8 @@ function createCard (event) {
 function appendCard (idea) {
   var card =
   `<article class="idea-cards" data-id="${idea.id}">
-    <h2 class="card-title"> ${idea.title}</h2>
-    <p class="card-body">
+    <h2 class="card-title"contentEditable = "true"> ${idea.title}</h2>
+    <p class="card-body" contentEditable = "true";>
     ${idea.body}
     </p>
     <hr>
