@@ -29,8 +29,8 @@ body{
 }
 
 .box2b{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  justify-content: space-around;
   background-color: #524649;
   color: #FFFFFF;
   width: 100%;
@@ -50,9 +50,11 @@ body{
 .body-box{
   resize: none;
   border: none;
+  padding: 0px;
 }
 .title-input-box{
   border: none;
+  padding: 0px;
 }
 
 .box2-container{
