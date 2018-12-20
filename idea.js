@@ -3,7 +3,7 @@ class Ideas {
     this.id = id;
     this.title = title;
     this.body = body;
-    this.quality = quality || 'Swill';
+    this.quality = quality || 0;
   }
 
   saveToStorage() {
@@ -18,7 +18,14 @@ class Ideas {
 
   }
 
-  updateQuality() {
-
+  updateQuality(vote, array) {
+    if((vote === "up") && (this.quality < array-1)){
+      this.quality++;
+    } else if((vote === "down") && (this.quality > 0)){
+      this.quality --;
+    }
   }
+
+
+  
 }
