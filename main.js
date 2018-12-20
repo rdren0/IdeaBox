@@ -33,43 +33,6 @@ searchInput.addEventListener('keyup', searchIdeas);
 
 // }
 //Functions to work on****************
-function searchIdeas (event) {
-  //****search functionality ideas
-  // const results = searchInput.value.toUpperCase();     
-  // for (var i = 0; i < ideasArray.length; i++) {
-  //   if (ideasArray[i].cardTitle === searchInput.value) {
-  //     resultsArray.push(ideasArray[i]);
-  //     console.log(resultsArray[i]);
-  //*****************
-    event.preventDefault();
-    var searchWord = searchInput.value.toUpperCase();
-    var filteredIdeas = ideasArray.filter(function(obj) {
-      var titleText = obj.title.toUpperCase();
-      var bodyText = obj.body.toUpperCase();
-      return titleText.includes(searchWord) || bodyText.includes(searchWord);
-    });
-    cardArea.innerHTML = "";
-    filteredIdeas.forEach(function(obj) {
-      appendCard(obj)
-    })
-    }
-
-
-  
-
-
-// function upQuality() {
-//   if (cardQuality.innerText === 'Quality: Swill') {
-//     cardQuality.innerText = 'Quality: Plausible';
-//   } else if (car)
-// }
-
-// function downQuality() {
-
-// }
-
-//*************************************
-
 
 window.onload = function() {
   var keys = Object.keys(localStorage);
@@ -79,6 +42,20 @@ window.onload = function() {
     ideasArray.push(newCard);
     appendCard(newCard);    
   }
+}
+
+function searchIdeas (event) {
+  event.preventDefault();
+  var searchWord = searchInput.value.toUpperCase();
+  var filteredIdeas = ideasArray.filter(function(obj) {
+    var titleText = obj.title.toUpperCase();
+    var bodyText = obj.body.toUpperCase();
+    return titleText.includes(searchWord) || bodyText.includes(searchWord);
+  });
+  cardArea.innerHTML = "";
+  filteredIdeas.forEach(function(obj) {
+    appendCard(obj)
+  })
 }
 
 function createCard (event) {
@@ -94,15 +71,15 @@ function createCard (event) {
 function appendCard (idea) {
   var card =
   `<article class="idea-cards" data-id="${idea.id}">
-    <h2 class="card-title"contentEditable = "true"> ${idea.title}</h2>
-    <p class="card-body" contentEditable = "true";>
-    ${idea.body}
-    </p>
-    <hr>
-    <img class="card-buttons down-button"src="images/down.svg">
-    <img class="card-buttons up-button"src="images/up.svg">
-    <h4 class="card-quality"> Quality: <span class="quality-level">Swill</span></h4>
-    <button onclick="deleteCard(${idea.id})" class="close-button"></button><img class="card-buttons close-button"src="images/close.svg">
+  <h2 class="card-title"contentEditable = "true"> ${idea.title}</h2>
+  <p class="card-body" contentEditable = "true";>
+  ${idea.body}
+  </p>
+  <hr>
+  <img class="card-buttons down-button"src="images/down.svg">
+  <img class="card-buttons up-button"src="images/up.svg">
+  <h4 class="card-quality"> Quality: <span class="quality-level">Swill</span></h4>
+  <button onclick="deleteCard(${idea.id})" class="close-button"></button><img class="card-buttons close-button"src="images/close.svg">
   </article>`
   cardArea.innerHTML = card + cardArea.innerHTML;
 }
@@ -121,5 +98,12 @@ function deleteCard (id) {
   ideasArray.splice(deleteIndex, 1)
 }
 
+function findIndexNumber(objId) {
+  for (var i = 0; i < ideasArray.length; i++) {
+    if (ideasArray[i].id === objId) {
+      return i
+    }
+  }
+};
 
 
