@@ -18,14 +18,11 @@ class Ideas {
 
   }
 
-  updateQuality(vote, array) {
-    if((vote === "up") && (this.quality < array-1)){
+  updateQuality(vote) {
+    if(vote === "up" && this.quality < 2) {
       this.quality++;
-    } else if((vote === "down") && (this.quality > 0)){
-      this.quality --;
+    } else if(vote === "down" && this.quality > 0) {
+      this.quality--;
     }
   }
-
-
-  
 }

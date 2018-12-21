@@ -10,7 +10,6 @@ var cardQuality     =     document.querySelector('.card-quality');
 var cardArea        =     document.querySelector('.box3');
 var ideasArray      =     [];
 var qualityArray    =     ['Swill', 'Plausible', 'Genius'];
-// var resultsArray    =     [];
 var swillButton     =     document.querySelector('.swill-quality');
 var plausibleButton =     document.querySelector('.plausible-quality');
 var geniusButton    =     document.querySelector('.genius-quality');
@@ -19,26 +18,21 @@ var geniusButton    =     document.querySelector('.genius-quality');
 
 //Event Listeners
 saveButton.addEventListener('click', createCard);
-// cardArea.addEventListener('click', deleteCard);
 searchInput.addEventListener('keyup', searchIdeas);
-// swillButton.addEventListener('click', searchSwill);
-// plausibleButton.addEventListener('click', searchPlausible);
-// geniusButton.addEventListener('click', searchGenius);
-// upButton.addEventListener('click', upQuality);
-// downButton.addEventListener('click', downQuality);
-// cardBody.addEventListener('dblclick', makeEditable)
+cardArea.addEventListener('click', function(event) {
+  if (event.target.classList.contains('up-button')) {
+    vote(event, 'up');
+  } else if (event.target.classList.contains('down-button')) {
+    vote(event, 'down')
+  }
+});
 
-// function makeEditable(e){
-//   e.preventDefault;
-
-// }
-//Functions to work on****************
 
 window.onload = function() {
   var keys = Object.keys(localStorage);
   for (var i = 0; i < keys.length; i++) {
     var parseObj = JSON.parse(localStorage.getItem(keys[i]));
-    newCard = new Ideas(parseObj.id, parseObj.title, parseObj.body, null);
+    newCard = new Ideas(parseObj.id, parseObj.title, parseObj.body, parseObj.quality);
     ideasArray.push(newCard);
     appendCard(newCard);    
   }
@@ -71,15 +65,15 @@ function createCard (event) {
 function appendCard (idea) {
   var card =
   `<article class="idea-cards" data-id="${idea.id}">
-  <h2 class="card-title"contentEditable = "true"> ${idea.title}</h2>
-  <p class="card-body" contentEditable = "true";>
-  ${idea.body}
-  </p>
-  <hr>
-  <img class="card-buttons down-button"src="images/down.svg">
-  <img class="card-buttons up-button"src="images/up.svg">
-  <h4 class="card-quality"> Quality: <span class="quality-level">Swill</span></h4>
-  <button onclick="deleteCard(${idea.id})" class="close-button"></button><img class="card-buttons close-button"src="images/close.svg">
+    <h2 class="card-title"contentEditable = "true">${idea.title}</h2>
+    <p class="card-body" contentEditable = "true";>
+    ${idea.body}
+    </p>
+    <hr>
+    <img class="card-buttons down-button"src="images/down.svg">
+    <img class="card-buttons up-button"src="images/up.svg">
+    <h4 class="card-quality"> Quality: <span class="quality-level">${qualityArray[idea.quality]}</span></h4>
+    <button onclick="deleteCard(${idea.id})" class="close-button"></button><img class="card-buttons close-button"src="images/close.svg">
   </article>`
   cardArea.innerHTML = card + cardArea.innerHTML;
 }
@@ -98,12 +92,30 @@ function deleteCard (id) {
   ideasArray.splice(deleteIndex, 1)
 }
 
-function findIndexNumber(objId) {
+function findIdNumber(objId) {
   for (var i = 0; i < ideasArray.length; i++) {
-    if (ideasArray[i].id === objId) {
+    if (parseInt(ideasArray[i].id) === parseInt(objId)) {
+      console.log(i)
       return i
     }
   }
+};
+
+function vote(event, votebutton) {
+  var index = findIdNumber(event.target.parentElement.dataset.id);
+  console.log(index)
+  console.log(event.target.parentElement.dataset.id, "hi you")
+  if (votebutton === 'up') {
+    ideasArray[index].updateQuality('up');
+    event.target.nextElementSibling.innerText = qualityArray[ideasArray[index].quality];   
+    console.log(qualityArray[ideasArray[index].quality])
+  } else if (votebutton === 'down') {
+    console.log('down')
+    ideasArray[index].updateQuality('down');
+    event.target.nextElementSibling.nextElementSibling.innerText = qualityArray[ideasArray[index].quality];
+  }
+  ideasArray[index].saveToStorage();
+  ideasArray.splice(index, 1, ideasArray[index]);
 };
 
 
