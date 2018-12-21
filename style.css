@@ -59,7 +59,7 @@ body{
 
 .box2-container{
   display: grid;
-  grid-template-columns: 1fr 700px 1fr;
+  grid-template-columns: minmax(10px, 1fr) minmax(200px, 500px) minmax(10px, 1fr);
 }
 
 .box3{
@@ -79,7 +79,8 @@ body{
   background-color: #FFFFFF;
   border: 1px solid #404041;
   box-sizing: border-box;
-  width: 700px;
+  max-width: 600px;
+  min-width: 350px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 15px;
@@ -89,7 +90,7 @@ body{
 h1{
   color: #FFFFFF;
   display: inline;
-  font-size: 25px;
+  font-size: 30px;
   margin-left: 5px;
 }
 
@@ -158,14 +159,13 @@ img{
 
 .search-box{
   border:none;
-  flex-grow:2;
   height: 100%;
   margin: auto;
   margin-right: 0;
 }
 
 .search-button{
-  background-color: #EAEAEA;
+  background-color: lightgray;
   border: none;
   box-sizing: border-box;
   height: 100%;
@@ -196,4 +196,7 @@ img{
 
 .title-input-box{
   height: 25px;
+}
+label{
+  font-size: 20px;
 }
