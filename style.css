@@ -9,7 +9,7 @@ body{
 
 .container {
   display: grid;
-  grid-template-rows: 50px 225px 50px 1fr;
+  grid-template-rows: 65px 300px 50px 1fr;
 }
 
 .box1{
@@ -26,6 +26,9 @@ body{
   background-color: #EAEAEA;
   padding-top: 10px;
  
+}
+
+form{
 }
 
 .box2b{
@@ -52,6 +55,8 @@ body{
   resize: none;
   border: none;
   padding: 0px;
+  height: 95px;
+  padding-top: 10px;
 }
 .title-input-box{
   border: none;
@@ -60,7 +65,7 @@ body{
 
 .box2-container{
   display: grid;
-  grid-template-columns: minmax(10px, 1fr) minmax(200px, 500px) minmax(10px, 1fr);
+  grid-template-columns: minmax(10px, 1fr) minmax(200px, 700px) minmax(10px, 1fr);
 }
 
 .box3{
@@ -188,15 +193,17 @@ img{
   display:flex;
   flex-direction:row;
   height: 25px;
+  margin-top: 10px;
 }
 
 .body-box{
-  height: 50px;
+  height: 90px;
   width: 100%;
 }
 
 .title-input-box{
-  height: 25px;
+  height: 35px;
+  margin-bottom: 5px;
 }
 label{
   font-size: 20px;
