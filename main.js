@@ -9,7 +9,7 @@ var closeButton     =     document.querySelector('.close-button');
 var cardQuality     =     document.querySelector('.card-quality');
 var cardArea        =     document.querySelector('.box3');
 var ideasArray      =     [];
-var qualityArray    =     ['Swill', 'Plausible', 'Genius'];
+var qualityArray    =     ['Quality: Swill', 'Quality: Plausible', 'Quality: Genius'];
 var swillButton     =     document.querySelector('.swill-quality');
 var plausibleButton =     document.querySelector('.plausible-quality');
 var geniusButton    =     document.querySelector('.genius-quality');
@@ -72,7 +72,7 @@ function appendCard (idea) {
     <hr>
     <img class="card-buttons down-button"src="images/down.svg">
     <img class="card-buttons up-button"src="images/up.svg">
-    <h4 class="card-quality"> Quality: <span class="quality-level">${qualityArray[idea.quality]}</span></h4>
+    <h4 class="card-quality"> <span class="quality-level">${qualityArray[idea.quality]}</span></h4>
     <button onclick="deleteCard(${idea.id})" class="close-button"></button><img class="card-buttons close-button"src="images/close.svg">
   </article>`
   cardArea.innerHTML = card + cardArea.innerHTML;
@@ -108,7 +108,7 @@ function vote(event, votebutton) {
   if (votebutton === 'up') {
     ideasArray[index].updateQuality('up');
     event.target.nextElementSibling.innerText = qualityArray[ideasArray[index].quality];   
-    console.log(qualityArray[ideasArray[index].quality])
+    console.log(qualityArray[ideasArray[index].quality]);
   } else if (votebutton === 'down') {
     console.log('down')
     ideasArray[index].updateQuality('down');
