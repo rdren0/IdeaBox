@@ -3,7 +3,7 @@ body{
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   max-width: 100%;
-  background-color: #F9F9FA; 
+  background-color: #F9F9FA;
 }
 
 
@@ -45,6 +45,7 @@ body{
   background-color: #6E646B;
   color: #FFFFFF;
   width: 150px;
+  font-size: 23px;
 }
 
 .body-box{
@@ -199,4 +200,37 @@ img{
 }
 label{
   font-size: 20px;
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+  h1{
+    font-size: 25px;
+  }
+
+  .box2b button{
+    font-size: 15px;
+    font-weight: 100;
+  }
+
+}
+
+@media only screen 
+  and (min-device-width: 481px) 
+  and (max-device-width: 950px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+  h1{
+    font-size: 30px;
+  }
+
+  .box2b button{
+    font-size: 20px;
+  }
+
+  
+
 }
