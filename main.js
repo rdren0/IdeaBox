@@ -38,10 +38,12 @@ window.onload = function() {
   for (var i = 0; i < keys.length; i++) {
     var parseObj = JSON.parse(localStorage.getItem(keys[i]));
     newCard = new Ideas(parseObj.id, parseObj.title, parseObj.body, parseObj.quality);
+    // var sortedIdeasArray = ideasArray.sort();
     ideasArray.push(newCard);
     appendCard(newCard); 
   }
 }
+//////need onclick event for "show more" button ///
 
 console.log(ideasArray);
 function searchIdeas (event) {
