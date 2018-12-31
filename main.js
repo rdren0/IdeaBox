@@ -27,9 +27,9 @@ cardArea.addEventListener('click', function(event) {
 });
 
 buttons.addEventListener('click', function(event) {
-   if (event.target.classList.contains('quality-button')) {
-   random(event.target.innerText);
- };
+  if (event.target.classList.contains('quality-button')) {
+    random(event.target.innerText);
+  };
 });
 
 
@@ -39,11 +39,11 @@ window.onload = function() {
     var parseObj = JSON.parse(localStorage.getItem(keys[i]));
     newCard = new Ideas(parseObj.id, parseObj.title, parseObj.body, parseObj.quality);
     ideasArray.push(newCard);
-    appendCard(newCard);  
+    appendCard(newCard); 
   }
 }
 
-    console.log(ideasArray);
+console.log(ideasArray);
 function searchIdeas (event) {
   event.preventDefault();
   var searchWord = searchInput.value.toUpperCase();
@@ -67,7 +67,7 @@ function random (quality) {
      objQuality.parentElement.parentElement.style.display = 'none';
    }
    console.log(objQuality.parentElement.parentElement.parentElement)
-  });
+ });
 }
 
 function createCard (event) {
@@ -83,15 +83,15 @@ function createCard (event) {
 function appendCard (idea) {
   var card =
   `<article class="idea-cards" data-id="${idea.id}">
-    <h2 class="card-title"contentEditable = "true">${idea.title}</h2>
-    <p class="card-body" contentEditable = "true";>
-    ${idea.body}
-    </p>
-    <hr>
-    <img class="card-buttons down-button"src="images/down.svg">
-    <img class="card-buttons up-button"src="images/up.svg">
-    <h4 class="card-quality"> <span class="quality-level">${qualityArray[idea.quality]}</span></h4>
-    <button onclick="deleteCard(${idea.id})" class="close-button"></button><img class="card-buttons close-button"src="images/close.svg">
+  <h2 class="card-title"contentEditable = "true">${idea.title}</h2>
+  <p class="card-body" contentEditable = "true";>
+  ${idea.body}
+  </p>
+  <hr>
+  <img class="card-buttons down-button"src="images/down.svg">
+  <img class="card-buttons up-button"src="images/up.svg">
+  <h4 class="card-quality"> <span class="quality-level">${qualityArray[idea.quality]}</span></h4>
+  <button onclick="deleteCard(${idea.id})" class="close-button"></button><img class="card-buttons close-button"src="images/close.svg">
   </article>`
   cardArea.innerHTML = card + cardArea.innerHTML;
 }
