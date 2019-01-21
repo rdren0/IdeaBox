@@ -11,4 +11,4 @@ Here is the design we were asked to recreate:
 Here is ours- we added a button row to allow the user to filter ideas:
 ![ideabox](images/Ouridea.png)
 Here is our responsive site:
-![ideabox](new.png)
+![ideabox](images/new.png)
