@@ -1,5 +1,4 @@
 var searchInput     =     document.querySelector('.search-input');
-var searchButton    =     document.querySelector('.search-button');
 var saveButton      =     document.querySelector('.save-button');
 var cardTitle       =     document.querySelector('.card-title');
 var cardBody        =     document.querySelector('.card-body');
@@ -8,10 +7,8 @@ var cardQuality     =     document.querySelector('.card-quality');
 var cardArea        =     document.querySelector('.box3');
 var ideasArray      =     [];
 var qualityArray    =     ['Quality: Swill', 'Quality: Plausible', 'Quality: Genius'];
-var swillButton     =     document.querySelector('.swill-quality');
-var plausibleButton =     document.querySelector('.plausible-quality');
-var geniusButton    =     document.querySelector('.genius-quality');
 var buttons         =     document.querySelector('.box2b');
+var titleValue      =     document.querySelector('.title-input-box');
 
 
 
@@ -28,24 +25,32 @@ cardArea.addEventListener('click', function(event) {
 
 buttons.addEventListener('click', function(event) {
   if (event.target.classList.contains('quality-button')) {
-    random(event.target.innerText);
-  };
+    showQuality(event.target.innerText);
+  }
 });
+
+// showAll.addEventListener('click', showMore);
 
 
 window.onload = function() {
   var keys = Object.keys(localStorage);
-  for (var i = 0; i < keys.length; i++) {
-    var parseObj = JSON.parse(localStorage.getItem(keys[i]));
+  keys.forEach (key =>{
+    var parseObj = JSON.parse(localStorage.getItem(key));
     newCard = new Ideas(parseObj.id, parseObj.title, parseObj.body, parseObj.quality);
-    // var sortedIdeasArray = ideasArray.sort();
     ideasArray.push(newCard);
     appendCard(newCard); 
-  }
+  })
 }
+
+titleValue.addEventListener('focusout', function() {
+  if (titleValue.value.length === 0) {
+    saveButton.disabled = true;
+  } else if (titleValue.value.length > 0) {
+    saveButton.disabled = false;
+  }
+});
 //////need onclick event for "show more" button ///
 
-console.log(ideasArray);
 function searchIdeas (event) {
   event.preventDefault();
   var searchWord = searchInput.value.toUpperCase();
@@ -60,16 +65,17 @@ function searchIdeas (event) {
   })
 }
 
-function random (quality) {
-  var qualityLevel = document.querySelectorAll('.quality-level');
-  qualityLevel.forEach(function(objQuality) {
-   if (objQuality.innerText.indexOf(quality) != -1) {
-     objQuality.parentElement.parentElement.style.display = 'block';
-   }  else if (objQuality.innerText.indexOf(quality) === -1) {
-     objQuality.parentElement.parentElement.style.display = 'none';
-   }
-   console.log(objQuality.parentElement.parentElement.parentElement)
- });
+function showQuality (qualities) {
+  var thisQualityButton = qualities;
+
+  var qualityIdeas = ideasArray.filter(function(obj) {
+    var qualityText = qualityArray[obj.quality];
+    return qualityText.includes(thisQualityButton);
+  });
+  cardArea.innerHTML = "";
+  qualityIdeas.forEach(function(obj) {
+    appendCard(obj)
+  })
 }
 
 function createCard (event) {
@@ -89,11 +95,17 @@ function appendCard (idea) {
   <p class="card-body" contentEditable = "true";>
   ${idea.body}
   </p>
-  <hr>
-  <img class="card-buttons down-button"src="images/down.svg">
-  <img class="card-buttons up-button"src="images/up.svg">
-  <h4 class="card-quality"> <span class="quality-level">${qualityArray[idea.quality]}</span></h4>
-  <button onclick="deleteCard(${idea.id})" class="close-button"></button><img class="card-buttons close-button"src="images/close.svg">
+
+  <section class="bottom-card-line">
+    <section class="left-bottom">
+      <img class="card-buttons down-button"src="images/down.svg">
+      <img class="card-buttons up-button"src="images/up.svg">
+      <h4 class="card-quality"><span class="quality-level">${qualityArray[idea.quality]}</span></h4>
+    </section>
+    <section class="delete-button">
+      <button onclick="deleteCard(${idea.id})" class="close-button"><img class="card-buttons close-button" src="images/close.svg"></button>
+    </section>
+  </section>
   </article>`
   cardArea.innerHTML = card + cardArea.innerHTML;
 }
@@ -114,25 +126,20 @@ function deleteCard (id) {
 function findIdNumber(objId) {
   for (var i = 0; i < ideasArray.length; i++) {
     if (parseInt(ideasArray[i].id) === parseInt(objId)) {
-      console.log(i)
       return i
     }
   }
-};
+}
 
 function vote(event, votebutton) {
-  var index = findIdNumber(event.target.parentElement.dataset.id);
+  var index = findIdNumber(event.target.closest('.idea-cards').dataset.id);
   if (votebutton === 'up') {
     ideasArray[index].updateQuality('up');
     event.target.nextElementSibling.innerText = qualityArray[ideasArray[index].quality];   
-    console.log(qualityArray[ideasArray[index].quality]);
   } else if (votebutton === 'down') {
-    console.log('down')
     ideasArray[index].updateQuality('down');
     event.target.nextElementSibling.nextElementSibling.innerText = qualityArray[ideasArray[index].quality];
   }
   ideasArray[index].saveToStorage();
   ideasArray.splice(index, 1, ideasArray[index]);
-};
-
-
+}
