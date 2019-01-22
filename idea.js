@@ -15,7 +15,11 @@ class Ideas {
   }
 
   updateContent() {
-    
+    if (type === 'title') {
+      this.title = newText;
+      } else if (type === 'body') {
+          this.body = newText;  
+     }  
   }
 
   updateQuality(vote) {
